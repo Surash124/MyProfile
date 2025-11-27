@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html lang="en" class="dark">
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -19,10 +21,14 @@
 </head>
 <body class="bg-black text-white font-sans">
 
+
+
   <!-- Navbar -->
   <header class="fixed top-0 left-0 right-0 z-50 flex justify-center py-4 bg-black/80 backdrop-blur-md">
   
-    <nav class="container mx-auto bg-[#2b2b2b] text-gray-300 flex items-center justify-between px-6 py-3 rounded-2xl shadow-lg max-w-6xl">
+    <nav class="container mx-auto bg-gray-200 text-gray-900 dark:bg-[#2b2b2b] dark:text-gray-300 
+            flex items-center justify-between px-6 py-3 rounded-2xl shadow-lg max-w-6xl">
+
   <div class="text-sm md:text-base font-mono">
     <span class="text-lime-400">{</span>
     <span class="mx-1">Surash Subba</span>
@@ -34,13 +40,33 @@
     <li><a href="AboutMe.html" class="hover:text-lime-400 transition">About Me</a></li>
     <li><a href="Projects.html" class="hover:text-lime-400 transition">Projects</a></li>
     <li><a href="contact.html" class="hover:text-lime-400 transition">Contact</a></li>
+
+    <!-- Dark/Light Toggle -->
+  <li>
+  <button 
+    id="themeToggle" 
+    class="ml-4 text-gray-300 hover:text-lime-400 focus:outline-none transition-colors duration-300 text-xl">
+    <i id="themeIcon" class="fa-solid fa-moon"></i>
+  </button>
+</li>
+
+
+
+
+
   </ul>
+
+
 </nav>
 
   </header>
 
   <!-- Hero Section -->
-  <section class="pt-32 container mx-auto px-6 flex flex-col md:flex-row items-center justify-between max-w-6xl">
+  <section id="hero" 
+         class="pt-32 container mx-auto px-6 flex flex-col md:flex-row items-center justify-between max-w-6xl
+                bg-[#0f0f0f] text-white transition-colors duration-300">
+
+
     <div class="md:w-1/2 space-y-5">
       <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">BUILDING CODE THAT<br>LOADS IN A BLINK.</h1>
       <p class="text-gray-400 text-sm leading-relaxed max-w-md">
@@ -64,7 +90,8 @@
   </section>
 
   <!-- About Me -->
-  <section id="about" class="mt-20 bg-[#0f0f0f] py-12">
+ <section id="about" class="mt-20 bg-[#0f0f0f] py-12">
+
     <div class="container mx-auto px-6 max-w-6xl">
       <h2 class="text-2xl font-bold mb-4">About Me</h2>
       <p class="text-gray-400 text-sm leading-relaxed">
@@ -260,6 +287,33 @@
 
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/a2e0e6c3f2.js" crossorigin="anonymous"></script>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  const heroSection = document.getElementById("hero");
+
+  themeToggle.addEventListener("click", () => {
+    if (heroSection.classList.contains("bg-[#0f0f0f]")) {
+      // Switch to light mode
+      heroSection.classList.remove("bg-[#0f0f0f]", "text-white");
+      heroSection.classList.add("bg-white", "text-black");
+
+      themeIcon.classList.remove("fa-moon");
+      themeIcon.classList.add("fa-sun");
+      themeIcon.style.color = "#111827"; // dark icon for light background
+    } else {
+      // Switch to dark mode
+      heroSection.classList.remove("bg-white", "text-black");
+      heroSection.classList.add("bg-[#0f0f0f]", "text-white");
+
+      themeIcon.classList.remove("fa-sun");
+      themeIcon.classList.add("fa-moon");
+      themeIcon.style.color = "#D3D3D3"; // light icon for dark background
+    }
+  });
+</script>
+
 
 </body>
 </html>
