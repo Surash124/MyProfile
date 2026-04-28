@@ -203,3 +203,144 @@ TwoSum([1,2,3,4,5,6,7,8,9,0,11,22,33,44,55,66,77,88,99],10)
 
 """
 
+""" """
+from collections import defaultdict
+
+# Sample data: each line is a time window
+data = [
+    "FF00 A123 B456 FF00",
+    "A123 FF00 FF00 FF00 A123",
+    "A123 A123 FF00",
+    "B456 B456 B456 B456",
+    "C789"
+]
+"""
+# ----------------------
+# Part 1: Longest consecutive repetition in a single line
+# ----------------------
+max_run = 0
+max_window = 0
+max_packet = ""
+
+for i, line in enumerate(data, start=1):
+    packets = line.split()
+    current_packet = ""
+    current_count = 0
+    
+    for pkt in packets:
+        if pkt == current_packet:
+            current_count += 1
+        else:
+            current_packet = pkt
+            current_count = 1
+        
+        if current_count > max_run:
+            max_run = current_count
+            max_window = i
+            max_packet = pkt
+
+print("Part 1: Longest run within a line")
+print(f"Window Number: {max_window}, Repetition Count: {max_run}, Packet: {max_packet}\n")
+
+# ----------------------
+# Part 2: Most frequent 2-packet sequence across all lines
+# ----------------------
+sequence_count = defaultdict(int)
+
+for line in data:
+    packets = line.split()
+    # Generate all 2-packet consecutive sequences
+    for j in range(len(packets) - 1):
+        seq = packets[j] + " " + packets[j+1]
+        sequence_count[seq] += 1
+
+# Find the sequence with the maximum count
+max_seq = max(sequence_count, key=sequence_count.get)
+max_seq_count = sequence_count[max_seq]
+
+print("Part 2: Most common 2-packet sequence across all lines")
+print(f"Sequence: {max_seq}, Total Count: {max_seq_count}")
+"""
+"""
+text ="aeoi453u7jn7hb64hnAE1IU1O"
+count = 0
+for ch in text:
+    if ch.isnumeric():
+        if ch.lower() in "1567":
+            count+=1
+print(count)"""
+"""
+def find_first_basement_entry(instructions: str) -> int:
+"""    """
+    Finds the 1-indexed position of the first character that causes Santa
+    to enter the basement (floor -1). Returns -1 if the basement is never entered.
+
+    floor = 0
+    
+    # Position is 1-indexed, starting at 1. We use 'enumerate' to get the
+    # 0-indexed index (i) and then add 1 for the 1-indexed position.
+    for i, char in enumerate(instructions):
+        position = i + 1  # 1-indexed position of the instruction
+
+        if char == '(':
+            floor += 1
+        elif char == ')':
+            floor -= 1
+        
+        # Check if the basement has been entered after the move
+        if floor == -1:
+            return position
+            
+    return -1 # Basement never reached
+
+# Example Usage:
+print(f"First basement entry for '())': {find_first_basement_entry('())')}")         # Expected: 3
+print(f"First basement entry for '() )': {find_first_basement_entry('())')}")       # Expected: 3
+print(f"First basement entry for '(((': {find_first_basement_entry('(((')}")         # Expected: -1
+print(f"First basement entry for ')': {find_first_basement_entry(')')}")             # Expected: 1
+"""
+
+
+# Longest Substring Without Repeating Characters
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_set = set()
+        left = 0
+        max_len = 0
+
+        for right in range(len(s)):
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+
+            char_set.add(s[right])
+            max_len = max(max_len, right - left + 1)
+
+        return max_len
+
+
+# -----------------------------
+# TESTING THE FUNCTION
+# -----------------------------
+
+def main():
+    sol = Solution()
+
+    # Example test cases
+    test_strings = [
+        "abcabcbb",
+        "bbbbb",
+        "pwwkew",
+        "",
+        "abcdef",
+        "dvdf"
+    ]
+
+    for s in test_strings:
+        result = sol.lengthOfLongestSubstring(s)
+        print(f"Input: {s!r} → Longest substring length = {result}")
+
+
+if __name__ == "__main__":
+    main()
