@@ -1,7 +1,7 @@
 # Surash Subba — Personal Portfolio
 
 A personal portfolio website built with HTML, CSS, and JavaScript.  
-Live at: [MyProfile](https://github.com/Surash124/MyProfile.git)
+Live at: [MyProfile](https://surash124.github.io/MyProfile/)
 
 ---
 
